@@ -1,10 +1,5 @@
-package client;
+package chat.client;
 
-import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.stage.Stage;
 import javax.swing.*;
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -22,10 +17,8 @@ public class Client extends JFrame implements Runnable {
      public JTextArea textinp = new JTextArea(25, 30);
      public ArrayList<String> contacts;
      public String user = "127.0.0.1";
-
     public Client(ArrayList<String> contacts) {
         this.contacts = contacts;
-        new Thread (new Area()).start();
     }
 
 
@@ -60,17 +53,5 @@ public class Client extends JFrame implements Runnable {
 
     }
 
-    public class Area extends Application implements Runnable {
-        @Override
-        public void run() {
-            launch("test");
-    }
-        @Override
-        public void start(Stage primaryStage) throws Exception{
-            Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
-            primaryStage.setTitle("APIC");
-            primaryStage.setScene(new Scene(root, 600, 550));
-            primaryStage.show();
-        }
-    }
+
 }

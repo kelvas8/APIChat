@@ -1,3 +1,4 @@
+package chat;
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -57,7 +58,7 @@ public class Server implements Runnable {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-                File path = new File ("src"+separator+"data"+separator+"contacts.json");
+                File path = new File ("src"+separator+"chat"+separator+"data"+separator+"contacts.json");
                 try  {
                     PrintWriter writer = new PrintWriter(new BufferedWriter(new FileWriter(path, true)));
                     writer.println(obj_publicKey);

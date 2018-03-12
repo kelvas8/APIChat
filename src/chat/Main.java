@@ -1,9 +1,15 @@
-import client.Client;
+package chat;
+import chat.client.Client;
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 
 import java.io.*;
 import java.util.ArrayList;
 
-public class Main {
+public class Main extends Application {
 
 
     public static void main(String[] args)  {
@@ -13,11 +19,18 @@ public class Main {
         new Thread (new Server()).start();
         Thread client = new Thread (new Client(contacts));
         client.run();
-
+        launch();
 
     }
 
 
+    @Override
+    public void start(Stage stage) throws Exception{
+        Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
+        stage.setTitle("APIC");
+        stage.setScene(new Scene(root, 600, 550));
+        stage.show();
+    }
 
 }
 
@@ -25,7 +38,7 @@ class Files {
 
     public ArrayList<String>  read(String input) {
             String separator = File.separator;
-            String path = "src"+separator+"data"+separator+input;
+            String path = "src"+separator+"chat"+separator+"data"+separator+input;
             FileReader file = null;
         try {
             file = new FileReader(path);
