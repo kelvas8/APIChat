@@ -53,5 +53,4 @@ public class Client extends JFrame implements Runnable {
 
     }
 
-
 }
