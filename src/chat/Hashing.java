@@ -1,4 +1,4 @@
-package chat.client;
+package chat;
 
 import java.math.BigInteger;
 import java.security.MessageDigest;
