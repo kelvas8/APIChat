@@ -19,6 +19,7 @@ public class Client extends JFrame implements Runnable {
      public String user = "127.0.0.1";
     public Client(ArrayList<String> contacts) {
         this.contacts = contacts;
+        new Thread (new Area()).start();
     }
 
 
@@ -52,5 +53,15 @@ public class Client extends JFrame implements Runnable {
         }
 
     }
+
+    class Area implements Runnable {
+
+
+        @Override
+        public void run() {
+
+        }
+    }
+
 
 }

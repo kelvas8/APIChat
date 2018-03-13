@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane fx:controller="chat.Main" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <MenuBar prefHeight="25.0" prefWidth="600.0">
+        <menus>
+          <Menu mnemonicParsing="false" text="Setting">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Close" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Edit">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Delete" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Help">
+            <items>
+              <MenuItem mnemonicParsing="false" text="About" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+      <Separator layoutX="161.0" layoutY="306.0" prefHeight="6.0" prefWidth="439.0" />
+      <Separator layoutX="159.0" layoutY="25.0" orientation="VERTICAL" prefHeight="375.0" prefWidth="8.0" />
+      <TextArea layoutX="165.0" layoutY="314.0" prefHeight="65.0" prefWidth="354.0" />
+       <Button layoutX="522.0" layoutY="314.0" mnemonicParsing="false" onAction="#sendAction" prefHeight="44.0" prefWidth="66.0" text="SEND" />
+      <ListView layoutX="1.0" layoutY="25.0" prefHeight="375.0" prefWidth="159.0" />
+   </children>
+</AnchorPane>
