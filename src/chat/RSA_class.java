@@ -24,7 +24,7 @@ public class RSA_class {
         try {
             JSONParser parser = new JSONParser();
             String separator = File.separator;
-            Object obj = parser.parse(new FileReader("src"+separator+"data"+separator+"public_keys.json"));
+            Object obj = parser.parse(new FileReader("src"+separator+"chat"+separator+"data"+separator+"public_keys.json"));
             JSONObject jsonObject =  (JSONObject) obj;
             key = jsonObject;
         } catch (IOException e) {
@@ -90,12 +90,12 @@ public class RSA_class {
             obj_publicKey.put("exponent", String.valueOf(publickey));
             obj_publicKey.put("hash", hash);
             String separator = File.separator;
-            try (FileWriter file = new FileWriter("src"+"chat"+"data"+separator+"private_key.json")) {
+            try (FileWriter file = new FileWriter("src"+separator+"chat"+separator+"data"+separator+"private_key.json")) {
                 file.write(obj_privetKey.toJSONString());
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            try (FileWriter file = new FileWriter("src"+separator+"data"+separator+"public_keys.json")) {
+            try (FileWriter file = new FileWriter("src"+separator+"chat"+separator+"data"+separator+"public_keys.json")) {
                 file.write(obj_publicKey.toJSONString());
             } catch (IOException e) {
                 e.printStackTrace();

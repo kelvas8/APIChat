@@ -14,18 +14,20 @@ public class Server implements Runnable {
 
     @Override
     public void run() {
-        System.out.println("Server start");
         try {
+            System.out.println("Server start");
             server = new ServerSocket(7896, 340);
             while(true) {
                 connection = server.accept();
                 output = new ObjectOutputStream(connection.getOutputStream());
                 input = new ObjectInputStream(connection.getInputStream());
                 IPAddress = String.valueOf(connection.getInetAddress());
+                System.out.println(input.readObject()+"wwdw");
                 String type = null;
                 JSONObject data = (JSONObject) input.readObject();
                 type  = String.valueOf(data.get("type"));
-                if(!type.equals("")) { new Handler(new Handler(data));
+                if(!type.equals("")) {
+                    new Thread( new Handler(data));
                 }
             }
         } catch (IOException e) {
