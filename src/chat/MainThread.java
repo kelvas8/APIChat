@@ -1,6 +1,8 @@
 package chat;
 
 
+import chat.server.Server;
+
 import java.io.*;
 import java.util.ArrayList;
 
@@ -11,12 +13,10 @@ public class MainThread {
 
     public static void threads()  {
         Files data = new Files();
-
         ArrayList<String> contacts = data.read("contacts.json");
         new Thread (new Server()).start();
-        Thread client = new Thread (new Client(contacts));
-        client.run();
-
+        Client client = new Client(contacts);
+        client.runClient();
     }
 
 

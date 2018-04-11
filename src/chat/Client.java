@@ -10,20 +10,24 @@ import java.net.Socket;
 import java.util.ArrayList;
 
 
-public class Client implements Runnable {
-     private Socket connection;
-     private ObjectOutputStream output;
-     private ObjectInputStream input;
-     public ArrayList<String> contacts;
-     public String user = "127.0.0.1";
-     private Controller mc;
+public class Client  {
+     private static Socket connection;
+     private static ObjectOutputStream output;
+     private static ObjectInputStream input;
+     private static ArrayList<String> contacts;
+     private static String user = "127.0.0.1";
+     private Object obj;
 
+
+    public Client() {
+        // this constructor probably will be needing
+    }
 
     public Client(ArrayList<String> contacts) {
         this.contacts = contacts;
     }
-    @Override
-    public void run() {
+
+    public static void runClient() {
         System.out.println("client start");
         try {
             while (true) {
@@ -34,24 +38,22 @@ public class Client implements Runnable {
                 }
                 output = new ObjectOutputStream(connection.getOutputStream());
                 input = new ObjectInputStream(connection.getInputStream());
-                  //  System.out.println((String) input.readObject());
-                Controller mc = null;
-                System.out.println(mc.i);
-                //sendDate(Controller.obj);
-                if(!Controller.obj.equals("{}")) { System.out.println(0); sendDate(mc.obj); }
+                System.out.println((String) input.readObject() + "this working");
             }
         } catch (IOException e) {
             e.printStackTrace();
-        } //catch (ClassNotFoundException e) {
-           // e.printStackTrace();
-       // }
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
 
     }
 
-    public  void sendDate(Object obj) {
+    public synchronized void sentData(Object obj) {
+
+        this.obj = obj;
         try {
             output.flush();
-            output.writeObject(obj);
+            output.writeObject(this.obj);
         } catch (IOException e) {
             e.printStackTrace();
         }

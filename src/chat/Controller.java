@@ -9,11 +9,11 @@ public static int i = 1;
 
     @FXML
     public  void sendAction() {
-
         i++;
         obj.put("type", "messages");
         obj.put("message", "try");
-        System.out.println(obj);
-    }
+        Client client = new Client();
+        client.sentData(obj);
+            }
 
 }
