@@ -1,19 +1,29 @@
 package chat;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.TextArea;
+import javafx.scene.layout.Pane;
 import org.json.simple.JSONObject;
 
-public class Controller {
-public static JSONObject obj = new JSONObject();
-public static int i = 1;
+
+public class Controller  {
+
+    private  JSONObject obj = new JSONObject();
 
     @FXML
-    public  void sendAction() {
-        i++;
+    private TextArea textMessage;
+    @FXML
+    private Pane messages;
+    @FXML
+    public  void sendAction(ActionEvent event)  {
         obj.put("type", "messages");
-        obj.put("message", "try");
+        obj.put("message", textMessage.getText());
         Client client = new Client();
         client.sentData(obj);
-            }
+
+
+    }
+
 
 }

@@ -46,8 +46,9 @@ public class Main extends Application {
 
     }
 
-
-
+    public AnchorPane getPane() {
+        return pane;
+    }
 
     public static void main(String[] args) {
         launch(args);

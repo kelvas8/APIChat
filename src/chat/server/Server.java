@@ -9,10 +9,6 @@ import org.json.simple.JSONObject;
 public class Server implements Runnable {
     static private ServerSocket server;
     static private Socket connection;
-    static private ObjectOutputStream output;
-    static private ObjectInputStream input;
-    static private String IPAddress;
-    private Object obj;
 
     @Override
     public void run() {
@@ -21,19 +17,12 @@ public class Server implements Runnable {
 
     private static void runServer() {
         try {
-            System.out.println("Server start");
             server = new ServerSocket(7896, 340);
-            while(true) {
+            System.out.println("Server start");
+            while(!server.isClosed()) {
                 connection = server.accept();
-                output = new ObjectOutputStream(connection.getOutputStream());
-                input = new ObjectInputStream(connection.getInputStream());
-                IPAddress = String.valueOf(connection.getInetAddress());
-                String type;
-                JSONObject data = (JSONObject) input.readObject();
-                type  = String.valueOf(data.get("type"));
-                if(!type.equals(null)) {
-                    new Thread( new Handler(input.readObject())).start();
-                }
+              //System.out.println(connection.getInetAddress().getHostName() + " connected");
+                    new Thread( new Handler(connection)).start();
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -42,21 +31,7 @@ public class Server implements Runnable {
         }
     }
 
-    public synchronized void sentData(Object obj) {
 
-        this.obj = obj;
-        try {
-            output.flush();
-            output.writeObject(this.obj);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-    }
-
-    public String getIPAddress() {
-        return IPAddress;
-    }
 
 
 }

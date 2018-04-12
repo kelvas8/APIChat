@@ -16,7 +16,8 @@ public class Client  {
      private static ObjectInputStream input;
      private static ArrayList<String> contacts;
      private static String user = "127.0.0.1";
-     private Object obj;
+     private static Object obj;
+     private static int i;
 
 
     public Client() {
@@ -31,14 +32,14 @@ public class Client  {
         System.out.println("client start");
         try {
             while (true) {
-                try {
-                connection = new Socket(InetAddress.getByName(user), 7896);
-                } catch (ConnectException e) {
-                    e.printStackTrace();
-                }
-                output = new ObjectOutputStream(connection.getOutputStream());
-                input = new ObjectInputStream(connection.getInputStream());
-                System.out.println((String) input.readObject() + "this working");
+                    try {
+                        connection = new Socket(InetAddress.getByName(user), 7896);
+                    } catch (ConnectException e) {
+                        e.printStackTrace();
+                    }
+                    input = new ObjectInputStream(connection.getInputStream());
+                    output = new ObjectOutputStream(connection.getOutputStream());
+                    System.out.println((String) input.readObject() + " this working");
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -48,12 +49,15 @@ public class Client  {
 
     }
 
-    public synchronized void sentData(Object obj) {
+    public static ObjectInputStream getInput() {
+        return input;
+    }
 
-        this.obj = obj;
+    public static synchronized void sentData(Object obj) {
+        Client.obj = obj;
         try {
             output.flush();
-            output.writeObject(this.obj);
+            output.writeObject(Client.obj);
         } catch (IOException e) {
             e.printStackTrace();
         }

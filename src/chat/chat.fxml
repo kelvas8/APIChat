@@ -8,8 +8,9 @@
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
 
-<AnchorPane fx:controller="chat.Controller" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="chat.Controller">
    <children>
       <MenuBar prefHeight="25.0" prefWidth="600.0">
         <menus>
@@ -32,8 +33,9 @@
       </MenuBar>
       <Separator layoutX="161.0" layoutY="306.0" prefHeight="6.0" prefWidth="439.0" />
       <Separator layoutX="159.0" layoutY="25.0" orientation="VERTICAL" prefHeight="375.0" prefWidth="8.0" />
-      <TextArea layoutX="165.0" layoutY="314.0" prefHeight="65.0" prefWidth="354.0" />
+       <TextArea fx:id="textMessage" layoutX="165.0" layoutY="314.0" prefHeight="65.0" prefWidth="354.0" />
        <Button layoutX="522.0" layoutY="314.0" mnemonicParsing="false" onAction="#sendAction" prefHeight="44.0" prefWidth="66.0" text="SEND" />
       <ListView layoutX="1.0" layoutY="25.0" prefHeight="375.0" prefWidth="159.0" />
+      <Pane fx:id="messages" layoutX="162.0" layoutY="25.0" prefHeight="286.0" prefWidth="423.0" />
    </children>
 </AnchorPane>
