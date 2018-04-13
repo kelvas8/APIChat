@@ -1,5 +1,8 @@
-package chat;
+package chat.client;
 
+
+import chat.Controller;
+import chat.client.handlers.Handler;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -17,7 +20,7 @@ public class Client  {
      private static ArrayList<String> contacts;
      private static String user = "127.0.0.1";
      private static Object obj;
-     private static int i;
+     private static Controller controller = new Controller();
 
 
     public Client() {
@@ -39,7 +42,9 @@ public class Client  {
                     }
                     input = new ObjectInputStream(connection.getInputStream());
                     output = new ObjectOutputStream(connection.getOutputStream());
-                    System.out.println((String) input.readObject() + " this working");
+                   // System.out.println((String) input.readObject() + " this working");
+                    new Thread( new Handler(input.readObject())).start();
+
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -49,9 +54,7 @@ public class Client  {
 
     }
 
-    public static ObjectInputStream getInput() {
-        return input;
-    }
+
 
     public static synchronized void sentData(Object obj) {
         Client.obj = obj;

@@ -1,6 +1,7 @@
 package chat;
 
 
+import chat.client.Client;
 import chat.server.Server;
 
 import java.io.*;

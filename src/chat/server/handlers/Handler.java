@@ -37,7 +37,10 @@ public class Handler implements IHandler {
     public void setMessages() {
         if(type.equals("messages")) {
             String message = String.valueOf(jsondata.get("message"));
-            sentData(message);
+            JSONObject jsonrequest = new JSONObject();
+            jsonrequest.put("type", "messages");
+            jsonrequest.put("message", message);
+            sentData(jsonrequest);
         }
     }
 
